@@ -92,8 +92,9 @@ if __name__ == "__main__":
     description = " ".join(sys.argv[1:]) if len(sys.argv) > 1 else None
 
     if not description:
-        print("Usage: shellgen \"<command description>\"")
-        print("Example: shellgen \"list all files larger than 1MB in current directory\"")
+        print("Usage: shellgen <command description>")
+        print("Example: shellgen list all files larger than 1MB in current directory")
+
         sys.exit(1)
 
     try:
