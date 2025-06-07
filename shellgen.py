@@ -94,7 +94,6 @@ if __name__ == "__main__":
     if not description:
         print("Usage: shellgen \"<command description>\"")
         print("Example: shellgen \"list all files larger than 1MB in current directory\"")
-        print("Note: Use quotes around descriptions containing spaces")
         sys.exit(1)
 
     try:
