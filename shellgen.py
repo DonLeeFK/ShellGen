@@ -7,6 +7,32 @@ from pathlib import Path
 import openai
 from dotenv import load_dotenv  # Add this import
 
+def get_os_version():
+    system = platform.system()
+    if system == 'Darwin':  # macOS
+        # Format as "macOS 12.6"
+        return f"Darwin/macOS{platform.mac_ver()[0]}"
+
+    elif system == 'Windows':
+        # For Windows 10/11 detection
+        release = platform.release()
+        version = platform.version()
+
+        if release == '10':
+            if int(version.split('.')[2]) >= 22000:
+                return "Windows 11"
+            else:
+                return "Windows 10"
+        return f"Windows {release}"
+
+    elif system == 'Linux':
+        # For common Linux distributions
+        dist = platform.freedesktop_os_release()
+        return f"Linux/{dist['NAME']}{dist['VERSION_ID']}"
+
+    return platform.platform()  # Fallback for other systems
+
+
 def copy_to_clipboard(text: str) -> bool:
     """Copy text to clipboard using platform-specific methods"""
     system = platform.system()
@@ -50,6 +76,7 @@ def generate_shell_command(description: str) -> str:
         raise ValueError("BASE_URL not found in .env file")
     if not model:
         raise ValueError("MODEL not found in .env file")
+    os_version = get_os_version()
 
     client = openai.OpenAI(api_key=api_key, base_url=base_url)
 
@@ -61,7 +88,7 @@ def generate_shell_command(description: str) -> str:
                 "role": "system",
                 "content": (
                     "You are Shell Command Generator "
-                    "Provide only zsh commands for Darwin/MacOS 12.6."
+                    f"Provide only zsh commands for {os_version}."
                     "Output ONLY the command itself without any explanations, quotes"
                     "If the request is impossible or unclear, return 'ERROR: ' followed by a brief reason."
                 )
