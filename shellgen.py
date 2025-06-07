@@ -43,16 +43,19 @@ def generate_shell_command(description: str) -> str:
 
     api_key = os.getenv("API_KEY")
     base_url = os.getenv("BASE_URL")
+    model = os.getenv("MODEL")
     if not api_key:
         raise ValueError("API_KEY not found in .env file")
     if not base_url:
         raise ValueError("BASE_URL not found in .env file")
+    if not model:
+        raise ValueError("MODEL not found in .env file")
 
     client = openai.OpenAI(api_key=api_key, base_url=base_url)
 
 
     response = client.chat.completions.create(
-        model="deepseek-chat",
+        model=model,
         messages=[
             {
                 "role": "system",

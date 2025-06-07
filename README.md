@@ -18,6 +18,7 @@ Tired of guessing shell commands? ShellGen turns your English descriptions into 
 ```<ENV>
 API_KEY="your-api-key-here"
 BASE_URL="api.openai.com"
+MODEL="model_of_your_choice"
 ```
 ## How I would use it
 1. Open your shell config
