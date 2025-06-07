@@ -131,11 +131,11 @@ if __name__ == "__main__":
         command = generate_shell_command(description)
         #print(command)
 
-        # Copy to clipboard on macOS
+
         if copy_to_clipboard(command):
             print("\n✅ Command copied to clipboard!", file=sys.stderr)
         else:
-            print("\n⚠️ Failed to copy to clipboard (pbcopy not available)", file=sys.stderr)
+            print("\n⚠️ Failed to copy to clipboard", file=sys.stderr)
 
     except Exception as e:
         print(f"ERROR: {str(e)}", file=sys.stderr)
