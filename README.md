@@ -32,7 +32,7 @@ nano ~/.zshrc
 ```
 2. Add this line to the file
 ```
-alias cmd="python3 /path/to/shellgen.py"
+alias shellgen="python3 /path/to/shellgen.py"
 ```
 3. Refrensh your shell
 ```<BASH>
